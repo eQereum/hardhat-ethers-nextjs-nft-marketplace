@@ -7,7 +7,8 @@ const fs = require('fs-extra');
 const contractName = 'NFTMarketplace';
 const networkName = 'rinkeby';
 const pathSource = `./artifacts/contracts/NFTMarketplace.sol/NFTMarketplace.json`;
-// `npx hardhat run scripts/deploy_Factory_v1.js --network ${networkName}`;
+const buildPath = path.resolve(__dirname, '../../client/src/contracts');
+// `npx hardhat run scripts/NFTMarketplace.js --network ${networkName}`;
 // ------------------------------------------------------------------------------------------------------------------
 
 const main = async () => {
@@ -30,7 +31,6 @@ const makeOutputSummary = (pathSource, contractAddress, owner, networkId, deploy
   let readableSource = fs.readFileSync(pathSource, 'utf8');
   readableSource = JSON.parse(readableSource);
 
-  const buildPath = path.resolve(__dirname, '../../client/src/contracts');
   // fs.removeSync(buildPath);
   fs.ensureDirSync(buildPath);
 

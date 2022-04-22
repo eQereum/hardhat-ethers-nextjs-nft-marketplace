@@ -77,8 +77,6 @@ describe('NFTMarketplace & NFT Contract ----------------------------------------
     });
 
     describe('buyItem()', () => {
-      // item1 = 0.2 ether
-      // item1 = 0.5 ether
       it('should revert when msg.value != price', async () => {
         await expect(hardhatNFTMarketplace.connect(buyer).buyItem(NFTAddress, 1, { value: ethers.utils.parseEther('0.1') })).to.be.revertedWith('submitted price differs from item price');
         await expect(hardhatNFTMarketplace.connect(buyer).buyItem(NFTAddress, 2, { value: ethers.utils.parseEther('0.2') })).to.be.revertedWith('submitted price differs from item price');
@@ -89,10 +87,6 @@ describe('NFTMarketplace & NFT Contract ----------------------------------------
         await expect(hardhatNFTMarketplace.connect(buyer).buyItem(NFTAddress, 1, { value: ethers.utils.parseEther('0.2') }))
           .to.emit(hardhatNFTMarketplace, 'ItemSoldLog')
           .withArgs(1, NFTAddress, 1, await seller1.getAddress(), await buyer.getAddress());
-
-        // await expect(hardhatNFTMarketplace.connect(buyer).buyItem(NFTAddress, 2, { value: ethers.utils.parseEther('0.5') }))
-        //   .to.emit(hardhatNFTMarketplace, 'ItemSoldLog')
-        //   .withArgs(2, NFTAddress, 2, await seller1.getAddress(), await buyer.getAddress());
 
         await expect(hardhatNFTMarketplace.connect(buyer).buyItem(NFTAddress, 3, { value: ethers.utils.parseEther('0.3') }))
           .to.emit(hardhatNFTMarketplace, 'ItemSoldLog')

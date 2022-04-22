@@ -8,7 +8,8 @@ const contractName = 'NFT';
 const networkName = 'rinkeby';
 const pathSource = `./artifacts/contracts/NFT.sol/NFT.json`;
 const marketplaceAddress = '0xe535E0D2dBCa7d66C84Cf0F2bFc0867A37b49F6f';
-// `npx hardhat run scripts/deploy_Factory_v1.js --network ${networkName}`;
+const buildPath = path.resolve(__dirname, '../../client/src/contracts');
+// `npx hardhat run scripts/NFT.js --network ${networkName}`;
 // ------------------------------------------------------------------------------------------------------------------
 
 const main = async () => {
@@ -31,7 +32,6 @@ const makeOutputSummary = (pathSource, contractAddress, owner, networkId, deploy
   let readableSource = fs.readFileSync(pathSource, 'utf8');
   readableSource = JSON.parse(readableSource);
 
-  const buildPath = path.resolve(__dirname, '../../client/src/contracts');
   // fs.removeSync(buildPath);
   fs.ensureDirSync(buildPath);
 
